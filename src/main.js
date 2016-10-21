@@ -44,6 +44,3 @@
         return this;
     }
 })(jQuery);
-
-
-
