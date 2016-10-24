@@ -37,7 +37,7 @@
             stack: 2,
             zIndex: 2
         };
-        var settings = $.extend(defaults,option);
+        var settings = $.extend({},defaults,option);
 
         return this;
     }
