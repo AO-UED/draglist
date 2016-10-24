@@ -25,21 +25,19 @@
         this.VERSION = '1.0.0';
 
         //option
-        this.option ={
-            type: option.type || '',
-            disable: option.disable  || 'false',
-            handle: option.handle,
-            axis: option.axis || 'horizontal',
-            cursor: option.cursor || 'pointer',
-            delay: option.delay || 300,
-            opacity: option.opacity || 0.5,
-            scroll: option.scroll || 'false',
-            stack: option.stack || 2
-        };
-
-        var options = $.extend({
+        var defaults = {
+            type: '',
+            disable: 'false',
+            handle:'handle',
+            axis: 'horizontal',
+            cursor: 'pointer',
+            delay: 300,
+            opacity: 0.5,
+            scroll: 'false',
+            stack: 2,
             zIndex: 2
-        },option);
+        };
+        var settings = $.extend(defaults,option);
 
         return this;
     }
