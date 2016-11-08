@@ -1,31 +1,12 @@
 //jianqing
 
-;(function($){
+;(function($,window,document){
 
-    var methods = {
-
-        //function
-        destroy: function(){},
-        disable: function(){},
-        enable: function(){},
-        getOption: function(){},
-        add: function(){},
-        delete: function(){},
-        edit: function(){},
-
-        //event
-        create: function(){},
-        drag: function(){},
-        start: function(){},
-        stop: function(){},
-        selected: function(){}
-    };
-
-    $.fn.Draglist = function(option,methods){
+    //定义构造函数
+    var Draglist = function(ele,opt){
         this.VERSION = '1.0.0';
-
-        //option
-        var defaults = {
+        this.$element = ele;
+        this.defaults = {
             type: '',
             disable: 'false',
             handle:'handle',
@@ -37,11 +18,36 @@
             stack: 2,
             zIndex: 2
         };
-        var settings = $.extend({},defaults,option);
+        this.options = $.extend({},this.defaults,opt);
+    };
 
-        return this;
+    //定义方法
+    Draglist.prototype = {
+        //function
+        destroy: function(){},
+        disable: function(){},
+        enable: function(){},
+        getOption: function(){},
+        add: function(){},
+        delete: function(){},
+        edit: function(){},
+
+        //event
+        createObj: function(){},
+        drag: function(){},
+        start: function(){},
+        stop: function(){},
+        selected: function(){}
+    };
+
+    //插件
+    $.fn.Draglist = function(option){
+
+        var draglist = new Draglist(this,option);
+
+        return draglist;
     }
-})(jQuery);
+})(jQuery,window,document);
 
 
 
