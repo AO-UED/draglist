@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>html</title>
+    <link rel="stylesheet" href="drag-list.css"/>
+</head>
+<body>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <symbol id="icon-file-o" viewBox="0 0 27 32">
+                <title>file-o</title>
+                <path class="path1" d="M26.214 6.786q0.5 0.5 0.857 1.357t0.357 1.571v20.571q0 0.714-0.5 1.214t-1.214 0.5h-24q-0.714 0-1.214-0.5t-0.5-1.214v-28.571q0-0.714 0.5-1.214t1.214-0.5h16q0.714 0 1.571 0.357t1.357 0.857zM18.286 2.429v6.714h6.714q-0.179-0.518-0.393-0.732l-5.589-5.589q-0.214-0.214-0.732-0.393zM25.143 29.714v-18.286h-7.429q-0.714 0-1.214-0.5t-0.5-1.214v-7.429h-13.714v27.429h22.857z"></path>
+            </symbol>
+            <symbol id="icon-folder" viewBox="0 0 30 32">
+                <title>folder</title>
+                <path class="path1" d="M29.714 10.857v12.571q0 1.643-1.179 2.821t-2.821 1.179h-21.714q-1.643 0-2.821-1.179t-1.179-2.821v-17.143q0-1.643 1.179-2.821t2.821-1.179h5.714q1.643 0 2.821 1.179t1.179 2.821v0.571h12q1.643 0 2.821 1.179t1.179 2.821z"></path>
+            </symbol>
+            <symbol id="icon-folder-open" viewBox="0 0 34 32">
+                <title>folder-open</title>
+                <path class="path1" d="M33.554 17q0 0.554-0.554 1.179l-6 7.071q-0.768 0.911-2.152 1.545t-2.563 0.634h-19.429q-0.607 0-1.080-0.232t-0.473-0.768q0-0.554 0.554-1.179l6-7.071q0.768-0.911 2.152-1.545t2.563-0.634h19.429q0.607 0 1.080 0.232t0.473 0.768zM27.429 10.857v2.857h-14.857q-1.679 0-3.518 0.848t-2.929 2.134l-6.107 7.179q0-0.071-0.009-0.223t-0.009-0.223v-17.143q0-1.643 1.179-2.821t2.821-1.179h5.714q1.643 0 2.821 1.179t1.179 2.821v0.571h9.714q1.643 0 2.821 1.179t1.179 2.821z"></path>
+            </symbol>
+        </defs>
+    </svg>
+    <div class="wrap">
+        <div class="list">
+            <ul>
+                <li class="file">
+                    <svg class="icon icon-file-o">
+                        <use xlink:href="#icon-file-o"></use>
+                    </svg>
+                    <a href="javascript:">文件</a>
+                </li>
+                <li class="file">
+                    <svg class="icon icon-file-o">
+                        <use xlink:href="#icon-file-o"></use>
+                    </svg>
+                    <a href="javascript:">文件</a>
+                </li>
+                <li class="file">
+                    <svg class="icon icon-file-o">
+                        <use xlink:href="#icon-file-o"></use>
+                    </svg>
+                    <a href="javascript:">文件</a>
+                </li>
+                <li class="file">
+                    <svg class="icon icon-file-o">
+                        <use xlink:href="#icon-file-o"></use>
+                    </svg>
+                    <a href="javascript:">文件</a>
+                </li>
+                <li class="folder">
+                    <svg class="icon icon-file-o">
+                        <use xlink:href="#icon-folder-open"></use>
+                    </svg>
+                    <a href="javascript:">文件夹</a>
+                    <ul>
+                        <li class="file">
+                            <svg class="icon icon-file-o">
+                                <use xlink:href="#icon-file-o"></use>
+                            </svg>
+                            <a href="javascript:">文件</a>
+                        </li>
+                        <li class="file">
+                            <svg class="icon icon-file-o">
+                                <use xlink:href="#icon-file-o"></use>
+                            </svg>
+                            <a href="javascript:">文件</a>
+                        </li>
+                        <li class="file">
+                            <svg class="icon icon-file-o">
+                                <use xlink:href="#icon-file-o"></use>
+                            </svg>
+                            <a href="javascript:">文件</a>
+                        </li>
+                        <li class="folder">
+                            <svg class="icon icon-file-o">
+                                <use xlink:href="#icon-folder"></use>
+                            </svg>
+                            <a href="javascript:">文件夹</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
