@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML5 Drag & Drop 拖拽与拖放测试</title>
+
+    <style type="text/css">
+		ul.drag-ul {
+		    margin: 0;
+		    list-style: none;
+		    padding: 0;
+		}
+		ul.drag-ul > li.drag-li {
+		    padding-top: 6px;
+		    cursor: pointer;
+		}
+		ul.drag-ul > li.drag-li.active {
+		    width: 100%;
+		    height: 100%;
+		    background-color: #eee;
+		}
+		ul.drag-ul > li.drag-li > div.drag-folder {
+			height: 30px;
+		}
+		ul.drag-ul > li.drag-li > div.drag-file {
+			height: 30px;
+		}
+
+		ul.drag-ul > li.drag-li > .drag-container > div.drag-content  {
+			padding-left: 10px;
+		    line-height: 30px;
+		    background: #ccc;
+		}
+		ul.drag-ul > li > .drag-container > ul > li > .drag-container > div.drag-content  {
+			padding-left: 30px;
+		}
+		ul.drag-ul > li > .drag-container > ul > li > .drag-container > ul > li > .drag-container > div.drag-content  {
+			padding-left: 50px;
+		}
+
+		ul.drag-ul > li.drag-li > ul.drag-ul {
+			/*padding: 0 0 0 20px;*/
+		}
+
+		.over {
+		  border: 2px dashed #000;
+		}
+		
+		.dndPlaceholder {
+		    display: block;
+		    background-color: #ddd;
+		    min-height: 42px;
+		}
+
+		.dndDraggingSource {
+		    display: none;
+		}
+    </style>
+
+    <!--
+		##功能列表：
+		1. 可拖拽（上下），交换位置
+		2. 可按数据结构初始化dom
+		3. 可创建文件夹类型
+		4. 可限制层级
+		5. 可打开关闭文件夹
+		6. 可拖至关闭状态的文件夹内
+		7. 
+    -->
+
+    <style type="text/css">
+    	.pt-dnd-list {
+    		margin: 0;
+		    list-style: none;
+		    padding: 0;
+		    position: relative;
+    	}
+    	.pt-dnd-draggable {
+    		padding-top: 6px;
+		    cursor: pointer;
+		    position: relative;
+    	}
+    	.pt-dnd-draggable .pt-dnd-list {
+    		margin-left: 20px;
+    	}
+    	.pt-dnd-container {
+    		padding-left: 10px;
+		    line-height: 30px;
+		    background: #ccc;
+    	}
+    	.pt-dnd-content {}
+
+    	.dndDragging {
+		    opacity: 0.7;
+		}
+		.dndDraggingSource {
+		    display: none;
+		}
+		.dndPlaceholder {
+		    background-color: #61b900;
+    		min-height: 22px;
+		    display: block;
+		    position: relative;
+		}
+
+    </style>
+</head>
+
+<body>
+	<!--
+		HTML结构
+		
+		<ul class="pt-dnd-list">
+			<li class="pt-dnd-draggable">
+				<div class="pt-dnd-container">
+					<div class="pt-dnd-content"></div>
+					<ul>
+						<li>
+							<div>
+								<div></div>
+								...
+							</div>
+						</li>
+					</ul>
+				</div>
+			</li>
+			...
+		</ul>
+	-->
+
+	<!-- 
+		数据结构 
+		
+		/**
+		 * id       {String}:   自身ID
+		 * name     {String}:   自身内容
+		 * type     {String}:   自身类型(file || folder)
+		 * order    {Number}:   排序字段
+		 * layer    {Number}:   具体层级
+		 * isOpen   {Boole}:    当type为folder时，是否打开
+		 * parentId {String}:   父级ID
+		 */
+
+		[
+		    {
+		    	id: null,		//自身ID
+		    	name: null,		//自身Name
+		    	type: 'folder', //自身类型(file || folder)
+		    	order: 1, 		//排序
+		    	parentId: 0, 	//父级ID
+		    	isOpen: false	//是否打开状态(文件夹类型)
+		    }
+		]
+	-->
+
+
+
+
+	<!-- <div id="menu">
+		<ul class="pt-dnd-list drag-ul"
+			dnd-list-id="1">
+			<li class="pt-dnd-draggable drag-li"
+				dnd-itme-id="1"
+				dnd-moved=""
+                dnd-dragend=""
+                dnd-disable-if="">
+				
+				<div class="drag-container">
+					<div class="drag-content drag-folder">文件夹22</div>
+
+					<ul class="pt-dnd-list drag-ul"
+						dnd-list-id="2">
+						<li class="pt-dnd-draggable drag-li"
+							dnd-itme-id="2"
+							dnd-moved=""
+			                dnd-dragend=""
+			                dnd-disable-if="">
+							<div class="drag-container">
+								<div class="drag-content drag-file">文件21</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="pt-dnd-draggable drag-li"
+				dnd-itme-id="3"
+				dnd-moved=""
+                dnd-dragend=""
+                dnd-disable-if="">
+				<div class="drag-container">
+					<div class="drag-content drag-folder">文件夹33</div>
+				</div>
+			</li>
+			<li class="pt-dnd-draggable drag-li"
+				dnd-itme-id="4"
+				dnd-moved=""
+                dnd-dragend=""
+                dnd-disable-if="">
+				<div class="drag-container">
+					<div class="drag-content drag-file">文件44</div>
+				</div>
+			</li>
+		</ul>
+	</div> -->
+
+
+
+	<div id="draglist"></div>
+
+	<script type="text/javascript" src="draglist.js"></script>
+	<script type="text/javascript">
+		/**
+		 * id       {String}:   自身ID
+		 * type     {String}:   类型（folder || file）
+		 * sort     {Number}:   排序字段
+		 * layer    {Number}:   具体层级
+		 * isOpen   {Boole}:    当type为folder时，是否打开
+		 * parentId {String}:   父级ID
+		 */
+		var data = [
+		    {id: 1, name: "1", type: 'folder', order: 1, parentId: 0, layer: 0, isOpen: false},
+		    {id: 5, name: "5", type: 'file', order: 1, parentId: 4, layer: 2, isOpen: false},
+		    {id: 4, name: "4", type: 'folder', order: 2, parentId: 1, layer: 1, isOpen: false},
+		    {id: 2, name: "2", type: 'file', order: 2, parentId: 0, layer: 0, isOpen: false},
+		    {id: 6, name: "6", type: 'folder', order: 3, parentId: 3, layer: 0, isOpen: false},
+		    {id: 8, name: "8", type: 'file', order: 1, parentId: 6, layer: 0, isOpen: false},
+		    {id: 3, name: "3", type: 'folder', order: 1, parentId: 1, layer: 1, isOpen: false},
+		    {id: 7, name: "7", type: 'file', order: 3, parentId: 1, layer: 1, isOpen: false}
+		]
+
+		var draglist = draglist.instance('draglist', data);
+
+
+
+		//生成树形DOM
+	    function TreeDom(list){
+	        this.tree = list || [];
+	        this.groups = {};
+	    }
+
+	    TreeDom.prototype = {
+	        //初始化
+	        init: function(pid){
+	            this.group();
+	            return this.getDom(this.groups[pid]);
+	        },
+
+	        //按pid生成分组
+	        group: function(){
+	            for (var i = this.tree.length - 1; i >= 0; i--) {
+	                if(!this.groups[this.tree[i].parentId]){
+	                    this.groups[this.tree[i].parentId] = [];
+	                }
+
+	                this.groups[this.tree[i].parentId].push(this.tree[i]);
+	            }
+
+	            for(var i in this.groups){
+	                this.groups[i].sort(sortBy('order'))
+	            }
+	        },
+
+	        //生成节点DOM
+	        getDom: function(item){
+	            if(!item){ return ''};
+
+	            var html = '\n<ul class="pt-dnd-list">\n';
+	            for (var i = 0; i <item.length; i++) {
+	                html += '<li class="pt-dnd-draggable" draggable="true" data-id="'+ item[i].id +'">';
+	                html += '<div class="pt-dnd-container">';
+	                html += '<div class="pt-dnd-content">'+ item[i].name + '</div>';
+	                html += '</div>';
+	                html += this.getDom(this.groups[item[i].id]);
+	                html += '</li>\n';
+	            };
+	            html += '</ul>\n';
+	            return html;
+	        }
+	    }
+	</script>
+</body>
+
+</html>
